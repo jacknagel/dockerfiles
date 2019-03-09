@@ -1,4 +1,4 @@
-FROM python:2-alpine
+FROM python:3-alpine
 
 LABEL maintainer "Jack Nagel <jack@jacknagel.dev>"
 
