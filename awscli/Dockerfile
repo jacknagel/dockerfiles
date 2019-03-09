@@ -1,8 +1,7 @@
-FROM alpine:latest
+FROM python:2-alpine
 
 LABEL maintainer "Jack Nagel <jack@jacknagel.dev>"
 
-RUN apk --no-cache add ca-certificates groff less python py2-pip \
-  && pip install awscli
+RUN apk --no-cache add ca-certificates groff less && pip install --no-cache-dir awscli
 
 ENTRYPOINT ["aws"]
