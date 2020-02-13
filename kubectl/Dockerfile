@@ -1,9 +1,5 @@
 FROM alpine:latest
-
-RUN apk --no-cache add ca-certificates curl \
-  && KUBERNETES_VERSION=$(curl -sSL https://storage.googleapis.com/kubernetes-release/release/stable.txt) \
-  && curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBERNETES_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
-  && chmod +x /usr/local/bin/kubectl \
-  && apk del --purge curl
-
+RUN KUBERNETES_VERSION=$(wget -q -O - https://storage.googleapis.com/kubernetes-release/release/stable.txt) \
+  && wget -q -O /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/${KUBERNETES_VERSION}/bin/linux/amd64/kubectl \
+  && chmod +x /usr/local/bin/kubectl
 ENTRYPOINT ["kubectl"]
