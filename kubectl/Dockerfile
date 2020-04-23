@@ -1,5 +1,7 @@
-FROM amazon/aws-cli:latest
+FROM alpine:latest AS build
 ARG KUBERNETES_VERSION
-RUN wget -q -O /usr/local/bin/kubectl https://dl.k8s.io/${KUBERNETES_VERSION}/bin/linux/amd64/kubectl \
-  && chmod +x /usr/local/bin/kubectl
+RUN wget -q -O /kubectl https://dl.k8s.io/${KUBERNETES_VERSION}/bin/linux/amd64/kubectl && chmod +x /kubectl
+
+FROM amazon/aws-cli:latest
+COPY --from=build /kubectl /usr/local/bin/
 ENTRYPOINT ["kubectl"]
