@@ -1,0 +1,2 @@
+#!/bin/sh
+docker build --build-arg SKEEMA_VERSION -t $IMAGE_NAME .
