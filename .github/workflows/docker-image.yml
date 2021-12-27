@@ -21,6 +21,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
         - name: skeema
           platforms: linux/amd64
+          build-args: SKEEMA_VERSION=1.6.0
 
     steps:
     - name: Checkout
@@ -51,3 +52,4 @@ jobs:
         platforms: ${{ matrix.platforms }}
         push: true
         tags: public.ecr.aws/jacknagel/${{ matrix.name }}:latest
+        build-args: ${{ matrix.build-args }}
