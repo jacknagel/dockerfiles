@@ -2,7 +2,8 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+    - main
 
 jobs:
 
@@ -12,6 +13,14 @@ jobs:
       contents: read
 
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+        - name: debug
+          platforms: linux/amd64,linux/arm64
+        - name: skeema
+          platforms: linux/amd64
 
     steps:
     - name: Checkout
@@ -38,7 +47,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         builder: ${{ steps.buildx.outputs.name }}
-        context: ./debug
-        platforms: linux/amd64,linux/arm64
+        context: ./${{ matrix.name }}
+        platforms: ${{ matrix.platforms }}
         push: true
-        tags: public.ecr.aws/jacknagel/debug:latest
+        tags: public.ecr.aws/jacknagel/${{ matrix.name }}:latest
