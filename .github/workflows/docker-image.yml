@@ -22,7 +22,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
         - name: skeema
           platforms: linux/amd64,linux/arm64
-          build-args: SKEEMA_VERSION=1.9.0
+          build-args: SKEEMA_VERSION=1.11.1
 
     steps:
     - name: Checkout
