@@ -43,10 +43,10 @@ jobs:
       uses: docker/setup-qemu-action@v3
 
     - name: Docker Setup Buildx
-      uses: docker/setup-buildx-action@v6
+      uses: docker/setup-buildx-action@v3
 
     - name: Docker Build
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v6
       with:
         builder: ${{ steps.buildx.outputs.name }}
         context: ./${{ matrix.name }}
