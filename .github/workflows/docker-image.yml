@@ -23,7 +23,7 @@ jobs:
           build-args: KUBERNETES_VERSION=1.33
         - name: skeema
           platforms: linux/amd64,linux/arm64
-          build-args: SKEEMA_VERSION=1.12.1
+          build-args: SKEEMA_VERSION=1.12.3
 
     steps:
     - name: Checkout
